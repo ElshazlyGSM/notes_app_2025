@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_app_2025/constants.dart';
 
@@ -17,25 +16,21 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: TextField(
-        obscureText: obscureText ?? false,
-        maxLines: maxLines,
-        // style: TextStyle(color: Colors.white),
-        onChanged: onChanged,
-        decoration: InputDecoration(
-          // labelText: labelText,
-          // labelStyle: TextStyle(color: kPrimaryColor),
-          hintText: labelText,
-          hintStyle: TextStyle(color: kPrimaryColor),
-
-          enabledBorder: buildBorder(kPrimaryColor),
-          focusedBorder: buildBorder(kPrimaryColor),
-          errorBorder: buildBorder(Colors.red),
-          focusedErrorBorder: buildBorder(Colors.red),
-          errorStyle: TextStyle(fontSize: 15),
-        ),
+    return TextField(
+      obscureText: obscureText ?? false,
+      maxLines: maxLines,
+      // style: TextStyle(color: Colors.white),
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        // labelText: labelText,
+        // labelStyle: TextStyle(color: kPrimaryColor),
+        hintText: labelText,
+        hintStyle: TextStyle(color: kPrimaryColor),
+        enabledBorder: buildBorder(kPrimaryColor),
+        focusedBorder: buildBorder(kPrimaryColor),
+        errorBorder: buildBorder(Colors.red),
+        focusedErrorBorder: buildBorder(Colors.red),
+        errorStyle: TextStyle(fontSize: 15),
       ),
     );
   }
