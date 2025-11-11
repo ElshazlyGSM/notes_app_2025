@@ -5,22 +5,30 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.labelText,
-    required this.onChanged,
+    required this.onSaved,
     this.obscureText,
     this.maxLines = 1,
+    this.validator,
   });
   final String labelText;
-  final Function(String) onChanged;
+  final void Function(String?)? onSaved;
   final bool? obscureText;
   final int maxLines;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Field is required';
+        }
+        return null;
+      },
       obscureText: obscureText ?? false,
       maxLines: maxLines,
       // style: TextStyle(color: Colors.white),
-      onChanged: onChanged,
+      onSaved: onSaved,
       decoration: InputDecoration(
         // labelText: labelText,
         // labelStyle: TextStyle(color: kPrimaryColor),

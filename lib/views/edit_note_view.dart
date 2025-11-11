@@ -16,12 +16,12 @@ class EditNoteView extends StatelessWidget {
             children: [
               CustomAppbar(text: 'Edit', icon: Icons.trending_up),
               SizedBox(height: 30),
-              CustomTextField(labelText: 'titel', onChanged: (value) {}),
+              CustomTextField(labelText: 'titel', onSaved: (value) {}),
               SizedBox(height: 15),
               CustomTextField(
                 labelText: 'contant',
                 maxLines: 5,
-                onChanged: (value) {},
+                onSaved: (value) {},
               ),
               CustomButtom(
                 text: 'add',
