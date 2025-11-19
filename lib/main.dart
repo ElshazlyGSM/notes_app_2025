@@ -13,7 +13,7 @@ void main() async {
 
   Hive.registerAdapter(NotesModelAdapter());
 
-  await Hive.openBox(kNotesBox);
+  await Hive.openBox<NotesModel>(kNotesBox);
   runApp(const NotesApp());
 }
 
