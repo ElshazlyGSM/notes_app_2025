@@ -15,6 +15,6 @@ class GetNoteCubit extends Cubit<GetNoteState> {
     notes = noteBox.values.toList();
     emit(GetNotesSuccessState());
 
-    print(notes!.length.toString());
+    log(notes!.length.toString());
   }
 }
