@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app_2025/models/notes_model.dart';
 import 'package:notes_app_2025/views/edit_note_view.dart';
 
 class CustomNote extends StatelessWidget {
-  const CustomNote({super.key});
-
+  const CustomNote({super.key, required this.notesModel});
+  final NotesModel notesModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -32,7 +33,7 @@ class CustomNote extends StatelessWidget {
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: const Text(
-                  'Ahmed',
+                  '',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),

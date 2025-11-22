@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes_app_2025/cubits/cubit/add_note_cubit.dart';
-import 'package:notes_app_2025/cubits/cubit/add_note_states.dart';
+import 'package:notes_app_2025/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app_2025/cubits/add_note_cubit/add_note_states.dart';
 import 'package:notes_app_2025/models/notes_model.dart';
 import 'package:notes_app_2025/widgets/custom_buttom.dart';
 import 'package:notes_app_2025/widgets/custom_text_form_field.dart';

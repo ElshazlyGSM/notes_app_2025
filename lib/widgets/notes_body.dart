@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app_2025/cubits/get_note_cubit/get_note_cubit.dart';
+import 'package:notes_app_2025/cubits/get_note_cubit/get_note_states.dart';
+import 'package:notes_app_2025/models/notes_model.dart';
 import 'package:notes_app_2025/widgets/custom_appbar.dart';
 import 'package:notes_app_2025/widgets/custom_note.dart';
 
@@ -7,6 +11,11 @@ class NotesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // لاستدعاء الميثود بدل متحول ل ستاتفول
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<GetNoteCubit>().getNote();
+    });
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -15,9 +24,16 @@ class NotesBody extends StatelessWidget {
           CustomAppbar(onPressed: () {}, text: 'Notes', icon: Icons.search),
           const SizedBox(height: 25),
           Expanded(
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return CustomNote();
+            child: BlocBuilder<GetNoteCubit, GetNoteState>(
+              builder: (context, state) {
+                List<NotesModel> notes =
+                    BlocProvider.of<GetNoteCubit>(context).notes ?? [];
+                return ListView.builder(
+                  itemCount: notes.length,
+                  itemBuilder: (context, index) {
+                    return CustomNote(notesModel: notes[index]);
+                  },
+                );
               },
             ),
           ),
