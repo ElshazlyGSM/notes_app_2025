@@ -38,7 +38,12 @@ class CustomNote extends StatelessWidget {
                 ),
               ),
               subtitle: Text(note.subTitle, style: TextStyle(fontSize: 20)),
-              trailing: const Icon(Icons.delete, size: 28),
+              trailing: IconButton(
+                onPressed: () {
+                  note.delete();
+                },
+                icon: Icon(Icons.delete, size: 28),
+              ),
             ),
             Text(note.date),
           ],
