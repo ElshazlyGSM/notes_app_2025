@@ -56,6 +56,10 @@ class CustomNote extends StatelessWidget {
               ),
             ),
             Text(note.date),
+            Text(
+              note.dateEdit != null ? 'Edit: ${note.dateEdit}' : '',
+              style: TextStyle(color: Colors.grey.shade600),
+            ),
           ],
         ),
       ),

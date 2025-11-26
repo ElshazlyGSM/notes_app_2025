@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:notes_app_2025/cubits/get_note_cubit/get_note_cubit.dart';
 import 'package:notes_app_2025/models/notes_model.dart';
 import 'package:notes_app_2025/widgets/colors_list.dart';
@@ -35,12 +36,17 @@ class _EditNoteViewState extends State<EditNoteView> {
   void saveNote() {
     widget.note.title = titleController.text;
     widget.note.subTitle = subTitleController.text;
+    widget.note.dateEdit = formattedDate;
 
     widget.note.save();
 
     BlocProvider.of<GetNoteCubit>(context).getNote();
     Navigator.pop(context);
   }
+
+  String formattedDate = DateFormat(
+    'dd/MM/yyyy – hh:mm a',
+  ).format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
