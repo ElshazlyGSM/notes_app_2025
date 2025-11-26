@@ -20,6 +20,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
+  Color selectedColor = Color(0xFF2A9D8F);
   String formattedDate = DateFormat(
     'dd/MM/yyyy – hh:mm a',
   ).format(DateTime.now());
@@ -30,10 +31,26 @@ class _AddNoteFormState extends State<AddNoteForm> {
       key: formKey,
       autovalidateMode: autovalidateMode,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 30),
+
+          // معاينة اللون المختار
+          Row(
+            children: [
+              Text(
+                'Selected Color:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 10),
+              CircleAvatar(backgroundColor: selectedColor, radius: 12),
+            ],
+          ),
+
+          SizedBox(height: 20),
+
           CustomTextField(
-            hintText: 'titel',
+            hintText: 'title',
             onSaved: (value) {
               title = value;
             },
@@ -46,7 +63,19 @@ class _AddNoteFormState extends State<AddNoteForm> {
               subTitle = value;
             },
           ),
-          ColorsList(),
+          SizedBox(height: 20),
+
+          // قائمة الألوان
+          ColorsList(
+            onColorSelected: (color) {
+              setState(() {
+                selectedColor = color;
+              });
+            },
+          ),
+
+          SizedBox(height: 20),
+
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButtom(
@@ -59,7 +88,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                       title: title!,
                       subTitle: subTitle!,
                       date: formattedDate,
-                      color: Colors.blue.toARGB32(),
+                      color: selectedColor.toARGB32(), // اللون المختار
                     );
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                   } else {

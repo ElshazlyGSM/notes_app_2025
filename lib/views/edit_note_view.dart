@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app_2025/cubits/get_note_cubit/get_note_cubit.dart';
 import 'package:notes_app_2025/models/notes_model.dart';
+import 'package:notes_app_2025/widgets/colors_list.dart';
 import 'package:notes_app_2025/widgets/custom_appbar.dart';
 import 'package:notes_app_2025/widgets/custom_text_form_field.dart';
 
@@ -57,6 +58,14 @@ class _EditNoteViewState extends State<EditNoteView> {
                 },
               ),
               SizedBox(height: 30),
+              ColorsList(
+                selectedColor: Color(widget.note.color),
+                onColorSelected: (Color color) {
+                  setState(() {
+                    widget.note.color = color.toARGB32();
+                  });
+                },
+              ),
               CustomTextField(
                 controller: titleController,
                 // labelText: 'title',
