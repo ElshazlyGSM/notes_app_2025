@@ -4,23 +4,28 @@ import 'package:notes_app_2025/constants.dart';
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
-    required this.labelText,
+    this.hintText,
     this.onSaved,
     this.obscureText,
     this.maxLines = 1,
     this.validator,
     this.onChanged,
+    this.controller,
+    this.minLines,
   });
-  final String labelText;
+  final String? hintText;
   final void Function(String?)? onSaved;
   final void Function(String)? onChanged;
   final bool? obscureText;
   final int maxLines;
   final FormFieldValidator<String>? validator;
+  final TextEditingController? controller;
+  final int? minLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       onChanged: onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {
@@ -30,12 +35,14 @@ class CustomTextField extends StatelessWidget {
       },
       obscureText: obscureText ?? false,
       maxLines: maxLines,
+      minLines: minLines,
+      keyboardType: TextInputType.multiline,
       // style: TextStyle(color: Colors.white),
       onSaved: onSaved,
       decoration: InputDecoration(
         // labelText: labelText,
         // labelStyle: TextStyle(color: kPrimaryColor),
-        hintText: labelText,
+        hintText: hintText,
         hintStyle: TextStyle(color: kPrimaryColor),
         enabledBorder: buildBorder(kPrimaryColor),
         focusedBorder: buildBorder(kPrimaryColor),

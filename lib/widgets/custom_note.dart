@@ -35,11 +35,18 @@ class CustomNote extends StatelessWidget {
               title: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Text(
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   note.title,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               ),
-              subtitle: Text(note.subTitle, style: TextStyle(fontSize: 20)),
+              subtitle: Text(
+                note.subTitle,
+                style: TextStyle(fontSize: 20),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
               trailing: IconButton(
                 onPressed: () {
                   note.delete();
